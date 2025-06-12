@@ -1,0 +1,34 @@
+Aarav Strong
+⏳ Installing autograder packages (this may take a few minutes)...
+✅ Autograder packages installed.
+
+Running test: test_applicants_set... 🧪                                          
+✅ test_applicants_set passed! 🚀 
+
+Running test: test_match... 🧪                                                   
+❌ test_match failed! 😞 
+Reason: Matched student 'Aarav Strong' is not in the expected set of matches: {'Arielle Conner', 'Alberto Choi', 'Aziel Casey', 'Analia Cherry', 'Amy Curry', 'Alejandro Clarke', 'Alfred Craig', 'Alvaro Carter', 'Alexa Clark', 'Avery Church', 'Avayah Chung', 'Allison Colon', 'Axton Chang', 'Abdiel Cherry', 'Amir Church', 'Adalynn Castillo', 'Amina Castillo', 'Amoura Casey', 'Alma Cordova', 'Alejandro Choi', 'Asa Cobb', 'Alexander Cortez', 'Abdullah Contreras', 'Arianna Chang', 'Amani Chung', 'Aisha Coffey'}
+Aarav Strong
+⏳ Installing autograder packages (this may take a few minutes)...
+✅ Autograder packages installed.
+
+Running test: test_applicants_set... 🧪                                          
+✅ test_applicants_set passed! 🚀 
+
+Running test: test_match... 🧪                                                   
+✅ Matched student 'Abdiel Cherry'
+✅ test_match passed! 🚀 
+
+🚀🚀🚀 Congratulations, your code passed all the autograder tests! 🚀🚀🚀        
+Aarav Strong
+⏳ Installing autograder packages (this may take a few minutes)...
+✅ Autograder packages installed.
+
+Running test: test_applicants_set... 🧪                                          
+✅ test_applicants_set passed! 🚀 
+
+Running test: test_match... 🧪                                                   
+✅ Matched student 'Abdiel Cherry'
+✅ test_match passed! 🚀 
+
+🚀🚀🚀 Congratulations, your code passed all the autograder tests! 🚀🚀🚀        
