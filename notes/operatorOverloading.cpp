@@ -30,18 +30,32 @@
  *      - Allows for the lhs to be a non-class type
  *      - Allows us to oveload operators with classes we don't own
  *  Eg:
- *      bool StanfordID::operator< (const StanfordID& rhs) const {...};
+ *      bool StanfordID::operator< (const StanfordID& rhs) const {...} {
+ *          // we can repalce id with this->id
+ *          return id < rhs.id;
+ *          // or
+ *          return id < rhs.id;
+ *          // or 
+ *          return id < rhs.getId;
+ *      }
  *
- *      bool operator< (const StanfordID& lhs, const StanfordID& rhs);
+ *      bool operator< (const StanfordID& lhs, const StanfordID& rhs) {
+ *          return lhs.getId < rhs.getId;
+ *          return lhs.id < rhs.id; // this is wrong: non-member overloading
+ *                                  // can't access private variables
+ *      }
  *
  *  With member operator overloading we have access to this-> and the variables
  *  of the class. But we can't access these with non-member overloading, because
- *  the operator is acting on two classes.
+ *  the operator is acting on two classes. So if there is no functions like
+ *  getId(), we must use friend
  *
  *  But the friend keyword allows non-member functions or classes to access
  *  private information in another class. In the header of the target class you
  *  declare the operator overload function as a friend:
- *      friend bool operator < (const StanfordID& lhs, const StanfordID& rhs);
+ *      friend bool operator < (const StanfordID& lhs, const StanfordID& rhs) {
+ *          return lhs.id < rhs.id;
+ *      }
  *
  *  Rules and Philosophies
  *      - Because operators are intended to convey meaning about type, the
