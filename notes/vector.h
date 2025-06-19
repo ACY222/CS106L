@@ -17,6 +17,8 @@ public:
 
     size_t size() const;    // Const means this function doesn't modify object,
                             // by doing so we can use it when we passing v as const.
+                            // (const object cannot be used when the parameter is
+                            // declared as non-const)
                             // Remember we also need to add const to the implementation
     bool empty() const;
 
