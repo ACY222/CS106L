@@ -1,0 +1,10 @@
+# ignore all files but the notes and main assignments
+assignments/assignment*/autograder
+assignments/assignment*/docs
+assignments/assignment*/**
+assignments/admin.py
+assignments/docs
+assignments/README.md
+
+!./assignments/assignments*/*.cpp
+!./assignments/assignments*/*.h
