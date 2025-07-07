@@ -5,7 +5,8 @@ assignments/assignment*/**
 assignments/admin.py
 assignments/docs
 assignments/README.md
-
-!./assignments/assignments*/*.cpp
-!./assignments/assignments*/*.h
 assignments/.DS_Store
+
+!assignments/assignment*/*.cpp
+!assignments/assignment*/*.h
+
