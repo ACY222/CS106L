@@ -22,14 +22,14 @@
 int main() {
     using namespace std;
     set<int> nums {1, 2, 3, 4, 5};
-    queue<const int*> odds;
+    queue<int> odds;
     for (auto it = nums.begin(); it != nums.end(); ++it) {
         if (*it % 2 == 1) {
-            odds.push(it);
+            odds.push(*it);
         }
     }
     while (!odds.empty()) {
-        cout << *odds.front() << ' ';
+        cout << odds.front() << ' ';
         odds.pop();
     }
     return 0;

@@ -1,31 +1,32 @@
-/*  1.Classes containing a sequence of objects of various types, a set of
- *  functions for manipulating these objects, and a set of restrictions on the
- *  access of these objects and function;
+/*  1.Classes containing 
+ *    - a sequence of objects of various types
+ *    - a set of functions for manipulating these objects
+ *    - a set of restrictions on the access of these objects and function;
  *  
  *  Structures are classes without access restrictions.(Have functions?)
  *
  *  2. Header File (.h) vs Source Files (.cpp)
- *      Header file:
- *          - defines the interface
- *          - contains: function prototypes, class declarations, type
- *          definitions, macros, constants
- *          - is shared across source files
- *          - example: void someFunction();
- *      Soucrce file:
- *          - implements class functions
- *          - contains: function implementations, executable code
- *          - is compiled into an object file
- *          - example: void someFunction() {...};
+ *    - Header file:
+ *      - defines the interface
+ *      - contains: function prototypes, class declarations, type
+ *      definitions, macros, constants
+ *      - is shared across source files
+ *      - example: void someFunction();
+ *    - Soucrce file:
+ *      - implements class functions
+ *      - contains: function implementations, executable code
+ *      - is compiled into an object file
+ *      - example: void someFunction() {...};
  *  3. Class design:
- *      - A constructor, which initializes the state of newly created objects
- *      - Private member functions/variables
- *      - Public member functions (interface for a user)
- *      - Destructor
+ *    - A constructor, which initializes the state of newly created objects
+ *    - Private member functions/variables
+ *    - Public member functions (interface for a user)
+ *    - Destructor
  *  4. Inheritance: Allow us to design powerful and versatile abstractions that
- *      can help us model complex relationships in code
+ *    can help us model complex relationships in code
  */
 #include <string>
-#include "studentID.h"
+#include "08-studentID.h"
 #include <iostream>
 
 // default constructor
@@ -36,7 +37,7 @@ StudentID::StudentID() {
 }
 
 // The first StudentID is namespace, like std. In our .cpp file we need to use
-// our class as the namespace when defining menber functions
+// our class as the namespace when defining member functions
 StudentID::StudentID(std::string name, std::string id, int age) {
     this->name = name;
     this->id = id;
@@ -90,8 +91,10 @@ StudentID::~StudentID() {
 }
 
 int main() {
-    StudentID ac {"Ai Chang", "PB22111620", 22};
+    StudentID ac;
+    StudentID dd { "Dingyi", "222", 21 };
     ac.StudentID::printInformation();
-    std::cout << ac.getName() << '\n' << ac.getAge() << '\n';
+    dd.StudentID::printInformation();
+    // std::cout << ac.getName() << '\n' << ac.getAge() << '\n';
     return 0;
 }

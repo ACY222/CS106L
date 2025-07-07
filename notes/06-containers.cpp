@@ -28,9 +28,9 @@ void vectorExample() {
      * vector<type> v(n, k);    create a vector with n copies of k
      * */
     vector<int> vec {1, 2, 3, 4};
+    // last_item = vec.back();  // we can use .back() to access the last item
     vec.pop_back();     // pop the last element, return nothing
     vec.push_back(5);   // push 5 in the end of vec
-    vec.push_back(6);
 
     for (size_t i = 0; i < vec.size(); i++) {
         cout << vec[i] << ", "; // 1, 2, 3, 5, 6,
@@ -43,8 +43,8 @@ void vectorExample() {
     }
     cout << endl;
 
-    // save making a potential expensive copy of each element, and make sure
-    //  that elements in vec won't be changed
+    // remember that & doesn't the element so that saves time and space,
+    // const makes sure that the element won't be changed
     for (const auto& elem : vec) {
         cout << elem << ", ";
     }

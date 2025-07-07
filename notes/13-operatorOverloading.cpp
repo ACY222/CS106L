@@ -22,7 +22,7 @@
  *
  *  Two ways to overloaded:
  *      - Member overloading: Declares the overloaded operator within the scope
- *      of you class. The lhs must be the class
+ *      of you class. The lhs must be the class, so it's less flexible
  *      - Non-member overloading: Declare the overloaded operator outside of
  *      class definitions, define both the left and right hand objects as
  *      parameters
@@ -31,12 +31,10 @@
  *      - Allows us to oveload operators with classes we don't own
  *  Eg:
  *      bool StanfordID::operator< (const StanfordID& rhs) const {...} {
- *          // we can repalce id with this->id
- *          return id < rhs.id;
- *          // or
+ *          // we can repalce lhs with this->id, and replace id with getId()
  *          return id < rhs.id;
  *          // or 
- *          return id < rhs.getId;
+ *          return id < rhs.getId();
  *      }
  *
  *      bool operator< (const StanfordID& lhs, const StanfordID& rhs) {
@@ -81,12 +79,3 @@
  *      - Overload when you need to, for example if you're not using a stream
  *      with your type, then don't overload << or >>
  */
-
-#include <iostream>
-#include <string>
-int main() {
-    std::string s = "hello world";
-    using std::cout; using std::endl;
-    cout << s << endl;
-    return 0;
-}

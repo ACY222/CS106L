@@ -8,6 +8,7 @@ private:    // data member declarations
 public:     // member function prototypes
     // constructor for our StudentID, the syntax is just the name of the class
     StudentID(std::string name, std::string id, int age);
+    // default constructor. Overloading!
     StudentID();
     // methods to get name and id repectively
     std::string getName();

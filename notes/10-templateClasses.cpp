@@ -8,7 +8,7 @@
  *      most cases don't use them.
  */
 #include <iostream>
-#include "vector.h"
+#include "10-vector.h"
 
 void printVec(const vector<int>& v) {
     for (size_t i = 0; i < v.size(); i++) {

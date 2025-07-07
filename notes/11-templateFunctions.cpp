@@ -4,11 +4,9 @@
  *  3. Concepts: Templates are great, but the errors they produce when used 
  *  incorrectly are unintuitive. So we should put some constraints on templates.
  *  Using concepts can bring us better compiler error messages and better IDE
- *  support. But comcepts are still a new feature, STL doesn't support them
+ *  support. But concepts are still a new feature, STL doesn't support them
  *  fully yet.
  *  4. Variadic templates
- *
- *
  */
 #include <iostream>
 #include <string>
@@ -27,6 +25,7 @@ T min_ref(const T& a, const T& b) { // use references to avoid making a copy
 
 // or we can make our template a little bit more flexible
 template <typename T, typename U>
+// we need to declare how to compare between T and U
 auto min_flex(const T& a, const U& b) {
     return a < b ? a : b;
 }
@@ -44,7 +43,7 @@ Iterator find(Iterator begin, Iterator end, TElem value) {
 template <typename T>
 concept Comparable = requires(T a, T b) {
     { a < b } -> std::convertible_to<bool>;
-}
+};      // why this colon is needed here
 
 /* Here's how we can use the Comparable concept.
  * Another way to write this is:

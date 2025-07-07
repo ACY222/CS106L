@@ -13,11 +13,17 @@
  *          // created  
  *          Widget();
  *          // Copy constructor: creates a new object as a member-wise copy of
- *          // another
+ *          // another. Triggered when we 
+ *              - initializing a new object: Widget b(a); Widget b = a;
+ *              - parameter passed by value: func(a);
+ *              - return:   return a;
  *          Widget (const Widget& w);
  *          // Copy assignment constructor: assigns an already existing object
- *          // to another
+ *          // to another(already existing object)
  *          Widget& operator = (const Widget& w);
+ *          eg:
+ *              Widget b;
+ *              b = a;
  *          // Destructor: called when the object goes out of scope
  *          ~Widget();
  *          // the last two are not the focus of today
@@ -25,7 +31,7 @@
  *          Widget& operator = (Widget&& rhs);  // move assignment constructor
  *      }
  *
- *      Copy Constructor vs Assgnment Operator:
+ *      Copy Constructor vs Copy Assignment Operator:
  *      Copy Constructor:
  *          Widget widgetOne;
  *          Widget widgetTwo = widgetOne;       // copy when being initialized
@@ -34,6 +40,7 @@
  *          Widget widgetTwo;
  *          widgetTwo = widgetOne;              // copy after being initialized
  *      Another example:
+ *          // const object can use Copy Constructor but not Copy Assignment ...
  *          // this is legel, const can be changed when being initialized
  *          const int i = 4;
  *          // this is illegal, const can't be changed after being initialized
@@ -76,7 +83,7 @@
  *
  *      Many times, you will want to create a copy that does more than just
  *      copies the member variables. Deep copy: an object that is a complete,
- *      independent copy of the original. In there cases, you'd want to override
+ *      independent copy of the original. In these cases, you'd want to override
  *      the default special member functions with your own implementation.
  *      Declare them in the .h and write their implementation in the .cpp.
  *
@@ -91,7 +98,9 @@
  *          public:
  *              PasswordManager();
  *              // other methods...
+ *              // remove copy constructor
  *              PasswordManager(const PasswordManager& rhs) = delete;
+ *              // remove copy assignment operator
  *              PasswordManager& operator = (const PasswordManager& rhs) = delete;
  *          }
  *
@@ -117,14 +126,8 @@ vector<int> func(vector<int> vec0) {    // copy constructor(the parameter)
     vector<int> vec6{};         // empty vector via list initialization
     vector<int> vec7{static_cast<int>(vec2.size() + vec6.size())};  // list init
     vector<int> vec8 = vec2;    // copy constructor
-    vec8 = vec2;                // copy assignment constructor
+    vec8 = vec2;                // copy assignment operator
     return vec8;                // copy constructor
     // list init is in implementation layer, uniform init is in syntax layer
     // So list initialization is also uniform initialization
-}
-int main() {
-    for (;;) {
-        return 0;
-    }
-    return 0;
 }

@@ -15,6 +15,7 @@
  *      auto lambda = [capture-values](arguments) {
  *          return expression;
  *      }
+ *      the capture-values should be variables that exist before the declaration
  *
  *  3. Functor: A functor is any object that defines an operator (), namely an
  *      object that acts like a function.
@@ -85,16 +86,17 @@ It my_find_if(It first, It last, Pred pred) {
 }
 
 int main() {
-    /* std::string corlys = "Lord of the Tides"; */
-    /* auto it = my_find_if(corlys.begin(), corlys.end(), isVowel); */
-    /* *it = '0'; */
-    /* std::cout << corlys << '\n'; */
+    // std::string corlys = "Lord of the Tides";
+    // auto it = my_find_if(corlys.begin(), corlys.end(), isVowel);
+    // *it = '0';
+    // std::cout << corlys << '\n';
 
-    /* int n; */
-    /* std::cin >> n; */
-    /* auto lessThanN = [n](int x) { return x < n; }; */
-    /* std::vector<int> v {4, 5, 6, 2, 3, 1}; */
-    /* auto it = my_find_if(v.begin(), v.end(), lessThanN); */
-    /* std::cout << *it << '\n'; */
+    int n;
+    std::cin >> n;
+    auto lessThanN = [n](int x) { return x < n; };
+    auto twoLessThanN = [n](int x) { return n - x == 2; };
+    std::vector<int> v {4, 5, 6, 2, 3, 1};
+    auto it = my_find_if(v.begin(), v.end(), twoLessThanN);
+    std::cout << *it << '\n';
     return 0;
 }

@@ -8,3 +8,4 @@ assignments/README.md
 
 !./assignments/assignments*/*.cpp
 !./assignments/assignments*/*.h
+assignments/.DS_Store

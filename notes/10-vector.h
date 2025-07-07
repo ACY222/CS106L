@@ -6,7 +6,7 @@ class vector {
 private:
     size_t _size;           // number of elements
     size_t _capacity;       // current capacity of container
-    T* _data;
+    T* _data;               // the elements
 
     void resize();          // need more space
 public:
@@ -48,6 +48,7 @@ vector<T>::~vector() {
 template <typename T>
 void vector<T>::resize() {
     auto newData = new T[_capacity * 2];
+    // won't this be highly expensive?
     for (size_t i = 0; i < _size; i++) {        // move elements to newData
         newData[i] = _data[i];
     }
@@ -72,6 +73,8 @@ T& vector<T>::operator[](size_t index) {
     return _data[index];
 }
 
+// notice that the only difference between the following two functions
+// is the fisrt one has 'const'
 template<typename T>
 const T& vector<T>::at(size_t index) const {
     if (index >= _size) {
@@ -90,6 +93,7 @@ T& vector<T>::at(size_t index) {
 
 template<typename T>
 void vector<T>::push_back(const T& elem) {
+    // only resize when we need
     if (_size == _capacity) {
         resize();
     }

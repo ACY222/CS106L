@@ -2,7 +2,8 @@
  *      all types and objects, and it dosen't allow for narrowing conversions.
  *      And use structured binding, which is quite neat.
  * 2. References(&) are a way to alias variables. It take in the actual piece of
- *      memory rather than making a copy. You can only reference a lvalue
+ *      memory rather than making a copy, which is more efficient. You can only
+ *      reference a lvalue
  * 3. Const is a way to ensure that you cannot modify a variable.
  *      You cannot declare a non-const reference to a const variable
  * */

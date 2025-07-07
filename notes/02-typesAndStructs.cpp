@@ -1,10 +1,11 @@
 /* 1. A struct bundles named variables into a new type 
  * 2. To use std::pair, you must `#include <utility>` even though some
- *      compilers help you with it. Otherwise it may fail in other mathcine
+ *      compilers help you with it. Otherwise it may fail in other machine
  * 3. We can create type aliases with the using keyword. It's kinda like
  *      a variable for types
  * 4. The auto keyword tells the compiler to infer the type
- * 5. Function overload: treat different parameters in different ways
+ * 5. Function overload: treat parameters with different types in 
+ *      different ways
  * */
 #include <iostream>
 #include <cmath>
@@ -16,9 +17,11 @@ using Points = pair<double, double>;
 using Solutions = pair<bool, Points>;
 
 // overload
+// if x is int, then transfer it into double
 double func(double x) {
     return 3 * x;
 }
+
 double func(int x) {
     return 3.0 + x;
 }
@@ -45,9 +48,11 @@ int main() {
     int bar(12.0);
     // 2. Uniform initialization, a consistent, type-safe syntax that uses '{}'
     //  to initialize objects
+    int foobar {1};
     vector<int> vec {1, 2, 3, 4};
     // 3. Structured binding, a method of initializing variables from data
-    //  structures with size known at compile time
+    //  structures with size known at compile time. The compiler will help us
+    //  to determine how to unpack
     auto [res, points] = solveQuadratic(1, -3, 2);
 
     int x = 5;
