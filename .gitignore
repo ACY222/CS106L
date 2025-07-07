@@ -7,6 +7,5 @@ assignments/docs
 assignments/README.md
 assignments/.DS_Store
 
-!assignments/assignment*/*.cpp
-!assignments/assignment*/*.h
-
+!assignments/assignment{0,1,2,4,5,6,7}/*.cpp
+!assignments/assignment{0,1,2,4,5,6,7}/*.h
