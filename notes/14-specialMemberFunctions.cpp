@@ -48,7 +48,8 @@
  *          i = 4;
  *      
  *      We don't have to write out any of these! They all have default versions
- *      that are generated automatically.
+ *      that are generated automatically. But if we're managing memory, we need
+ *      to override.
  *
  *
  *  2. Copy and copy assignment

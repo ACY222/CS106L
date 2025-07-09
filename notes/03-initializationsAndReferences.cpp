@@ -2,10 +2,16 @@
  *      all types and objects, and it dosen't allow for narrowing conversions.
  *      And use structured binding, which is quite neat.
  * 2. References(&) are a way to alias variables. It take in the actual piece of
- *      memory rather than making a copy, which is more efficient. You can only
- *      reference a lvalue
- * 3. Const is a way to ensure that you cannot modify a variable.
- *      You cannot declare a non-const reference to a const variable
+ *      memory rather than making a copy, which is more efficient. And you can
+ *      modify it directly, like a pointer. You can only reference a lvalue.
+ * 3. Const is a way to ensure that you cannot modify the variable, and a way to
+ *      announce that you won't modify the variable.
+ *
+ *      You cannot declare a non-const reference to a const variable. But you
+ *      can declare a const reference to a non-const variable.
+ *
+ *      If a function is const, we call it const member function, and it won't
+ *      modify the state of object on which it is called.
  * */
 #include <iostream>
 #include <vector>

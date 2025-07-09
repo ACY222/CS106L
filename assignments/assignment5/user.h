@@ -37,7 +37,7 @@ public:
   User(User&& user) = delete;
   User& operator=(User&& user) = delete;
 
-    User& operator+=(User& rhs);
+  User& operator+=(User& rhs);
   bool operator<(const User& rhs) const;
   
 
