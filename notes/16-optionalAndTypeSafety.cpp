@@ -12,12 +12,13 @@
  * 3. std::optional<T>: it's a template class which will either contain a value
  *  of type T or contain nothing(expressed as nullopt, which is not nullptr)
  *
- * 4. std::optional methods:
+ * 4. std::optional methods:(I don't understand them, honestly)
  *  - .value(): returns the contained value or throws bad_optional_access error
  *  - .value_or(valueType val): returns the contained value or default value,
  *  parameter val
  *  - .has_value(): returns true if contained value exists, false otherwise
- *  - .and_then(function f): returns the result of calling f(value) if 
+ *  - .and_then(function f): takes a null-optional instance of type T, 
+ *  returns the result of calling f(value) (std::optional<U>) if 
  *  contained value exists, otherwise nullopt(f must return optional)
  *  - .transform(function f): returns the result of calling f(value) if 
  *  contained value exists, otherwise nullopt(f must return 
