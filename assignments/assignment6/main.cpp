@@ -9,6 +9,7 @@
 #include <vector>
 
 /** STUDENT_TODO: You will need to include a relevant header file here! */
+#include <optional>
 
 #include "autograder/utils.hpp"
 
@@ -52,10 +53,16 @@ public:
    * @param course_title The title of the course to find.
    * @return You will need to figure this out!
    */
-  FillMeIn find_course(std::string course_title)
+  std::optional<Course> find_course(std::string course_title)
   {
     /* STUDENT_TODO: Implement this method! You will need to change the return
      * type. */
+    for (int i = 0; i < courses.size(); ++i) {
+      if (courses[i].title == course_title) {
+        return courses[i];
+      }
+    }
+    return std::nullopt;
   }
 
 private:
@@ -80,8 +87,23 @@ main(int argc, char* argv[])
     STUDENT_TODO: Populate the output string with the right information to print
     Please pay special attention to the README here
     ********************************************************/
+    // if (course.has_value()) {
+    // std::cout << "Found course: " << course->title << ","
+    //         << course->number_of_units << "," << course->quarter << "\n";
+    // } else {
+    //     std::cout << "Course not found.\n";
+    // }
+    // Found course: <title>,<number_of_units>,<quarter>
+    // Course not found.
+    // and_then(function f), transform(function f), or_else(value)
+    auto unpack = [](std::optional<Course> course) -> std::optional<std::string> {
+      if (!course) return std::nullopt;
+      return "Found course: " + course->title + ',' + course->number_of_units + ',' + course->quarter;
+    };
 
-    std::string output = /* STUDENT_TODO */
+    std::string output = course
+                        .and_then(unpack)
+                        .value_or("Course not found.");
 
     /********************************************************
      DO NOT MODIFY ANYTHING BELOW THIS LINE PLEASE
