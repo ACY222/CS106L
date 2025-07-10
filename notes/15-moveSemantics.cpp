@@ -20,7 +20,9 @@
  *
  * 5. Forcing Move Semantics: Using the SMFs we design is not always the most
  *  efficient. If we know that an lvalue will never be used again, we can use
- *  move semantics: std::move. But try to avoid explicitly using std::move
+ *  move semantics: std::move, this function turns an lvalue to and rvalue so
+ *  that we can take its resources immediately.
+ *  But try to avoid explicitly using std::move
  *  unless you have good reason! E.g. performance really matters.
  *
  * 6. Rule of Five: If we defined copy constructor/assignment operator and 
