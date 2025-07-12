@@ -29,7 +29,7 @@ struct Course
   bool operator==(const Course& other) const
   {
     return title == other.title && number_of_units == other.number_of_units &&
-           quarter == other.quarter;
+    quarter == other.quarter;
   }
 };
 
@@ -43,8 +43,8 @@ public:
                    lines.end(),
                    std::back_inserter(courses),
                    [](std::string line) {
-                     auto parts = split(line, ',');
-                     return Course{ parts[0], parts[1], parts[2] };
+                   auto parts = split(line, ',');
+                   return Course{ parts[0], parts[1], parts[2] };
                    });
   }
 
@@ -73,17 +73,18 @@ int
 main(int argc, char* argv[])
 {
   static_assert(
-    !std::is_same_v<std::invoke_result_t<decltype (&CourseDatabase::find_course), 
-                      CourseDatabase, std::string>,
-                    FillMeIn>,
-    "You must change the return type of CourseDatabase::find_course to "
-    "something other than FillMeIn.");
+  !std::is_same_v<std::invoke_result_t<decltype (&CourseDatabase::find_course),
+  CourseDatabase, std::string>,
+  FillMeIn>,
+  "You must change the return type of CourseDatabase::find_course to "
+  "something other than FillMeIn.");
 
   if (argc == 2) {
     CourseDatabase db("autograder/courses.csv");
+    // course is of type: optional<Course>
     auto course = db.find_course(argv[1]);
-    
-    /******************************************************** 
+
+    /********************************************************
     STUDENT_TODO: Populate the output string with the right information to print
     Please pay special attention to the README here
     ********************************************************/
@@ -102,8 +103,8 @@ main(int argc, char* argv[])
     };
 
     std::string output = course
-                        .and_then(unpack)
-                        .value_or("Course not found.");
+      .and_then(unpack)               // if *this exists, we unpack it, or {}
+      .value_or("Course not found."); // if *this is {}, return "Course..."
 
     /********************************************************
      DO NOT MODIFY ANYTHING BELOW THIS LINE PLEASE
@@ -112,6 +113,6 @@ main(int argc, char* argv[])
     std::cout << output << std::endl;
     return 0;
   }
-  
+
   return run_autograder();
 }
