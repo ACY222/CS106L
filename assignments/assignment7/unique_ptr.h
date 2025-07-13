@@ -14,6 +14,7 @@ template <typename T>
 class unique_ptr {
 private:
   /* STUDENT TODO: What data must a unique_ptr keep track of? */
+  // the pointer that points to the object
   T* _ptr;
 
 public:
@@ -22,16 +23,15 @@ public:
    * @param ptr The pointer to manage.
    * @note You should avoid using this constructor directly and instead use `make_unique()`.
    */
-  unique_ptr(T* ptr) : _ptr(ptr){
+  unique_ptr(T* ptr) : _ptr(ptr) {
     /* STUDENT TODO: Implement the constructor */
-    // use list initialization
   }
 
   /**
    * @brief Constructs a new `unique_ptr` from `nullptr`.
    */
   // nullptr_t is a type for nullptr, which is more safe and clear than void*/void
-  unique_ptr(std::nullptr_t) : _ptr(nullptr){
+  unique_ptr(std::nullptr_t) : _ptr(nullptr) {
     /* STUDENT TODO: Implement the nullptr constructor */
   }
 
@@ -56,7 +56,6 @@ public:
    */
   const T& operator*() const {
     /* STUDENT TODO: Implement the dereference operator (const) */
-    // what's the difference between this and the one above
     return *_ptr;
   }
 
@@ -97,22 +96,25 @@ public:
    * - Implement the move constructor
    * - Implement the move assignment operator
    */
+  // destructor: just deallocate the memory
   ~unique_ptr() {
     delete _ptr;
   }
-  // copy and copy assignment are banned
+  // delete copy constructor
   unique_ptr(const unique_ptr& other) = delete;
-  unique_ptr& operator=(const unique_ptr& other) = delete;
-  // we will delete the rvalue, so no const
-  unique_ptr(unique_ptr&& other) : _ptr(std::move(other._ptr)) {
+  // move constructor
+  unique_ptr(unique_ptr&& other) : _ptr(other._ptr) {
     other._ptr = nullptr;
   }
+  // delete copy assignment operator
+  unique_ptr& operator=(const unique_ptr& other) = delete;
+  // move assignment operator
   unique_ptr& operator=(unique_ptr&& other) {
     if (this == &other) {
       return *this;
     }
     delete _ptr;
-    _ptr = std::move(other._ptr);
+    _ptr = other._ptr;
     other._ptr = nullptr;
     return *this;
   }
