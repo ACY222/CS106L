@@ -13,6 +13,8 @@ namespace cs106l {
 template <typename T> class unique_ptr {
 private:
   /* STUDENT TODO: What data must a unique_ptr keep track of? */
+  // the pointer that points to the object
+  T* _ptr;
 
 public:
   /**
@@ -20,17 +22,15 @@ public:
    * @param ptr The pointer to manage.
    * @note You should avoid using this constructor directly and instead use `make_unique()`.
    */
-  unique_ptr(T* ptr) {
+  unique_ptr(T* ptr) : _ptr(ptr) {
     /* STUDENT TODO: Implement the constructor */
-    throw std::runtime_error("Not implemented: unique_ptr(T* ptr)");
   }
 
   /**
    * @brief Constructs a new `unique_ptr` from `nullptr`.
    */
-  unique_ptr(std::nullptr_t) {
+  unique_ptr(std::nullptr_t) : _ptr(nullptr) {
     /* STUDENT TODO: Implement the nullptr constructor */
-    throw std::runtime_error("Not implemented: unique_ptr(std::nullptr_t)");
   }
 
   /**
@@ -45,7 +45,7 @@ public:
    */
   T& operator*() {
     /* STUDENT TODO: Implement the dereference operator */
-    throw std::runtime_error("Not implemented: operator*()");
+    return *_ptr;
   }
 
   /**
@@ -54,7 +54,7 @@ public:
    */
   const T& operator*() const {
     /* STUDENT TODO: Implement the dereference operator (const) */
-    throw std::runtime_error("Not implemented: operator*() const");
+    return *_ptr;
   }
 
   /**
@@ -64,7 +64,7 @@ public:
    */
   T* operator->() {
     /* STUDENT TODO: Implement the arrow operator */
-    throw std::runtime_error("Not implemented: operator->()");
+    return _ptr;
   }
 
   /**
@@ -74,7 +74,7 @@ public:
    */
   const T* operator->() const {
     /* STUDENT TODO: Implement the arrow operator */
-    throw std::runtime_error("Not implemented: operator->() const");
+    return _ptr;
   }
 
   /**
@@ -84,7 +84,7 @@ public:
    */
   operator bool() const {
     /* STUDENT TODO: Implement the boolean conversion operator */
-    throw std::runtime_error("Not implemented: operator bool() const");
+    return _ptr != nullptr;
   }
 
   /** STUDENT TODO: In the space below, do the following:
@@ -94,6 +94,28 @@ public:
    * - Implement the move constructor
    * - Implement the move assignment operator
    */
+  // destructor: just deallocate the memory
+  ~unique_ptr() {
+    delete _ptr;
+  }
+  // delete copy constructor
+  unique_ptr(const unique_ptr& other) = delete;
+  // move constructor
+  unique_ptr(unique_ptr&& other) : _ptr(other._ptr) {
+    other._ptr = nullptr;
+  }
+  // delete copy assignment operator
+  unique_ptr& operator=(const unique_ptr& other) = delete;
+  // move assignment operator
+  unique_ptr& operator=(unique_ptr&& other) {
+    if (this == &other) {
+      return *this;
+    }
+    delete _ptr;
+    _ptr = other._ptr;
+    other._ptr = nullptr;
+    return *this;
+  }
 };
 
 /**
@@ -103,7 +125,7 @@ public:
  * @tparam Args The types of the arguments to pass to the constructor of T.
  * @param args The arguments to pass to the constructor of T.
  */
-template <typename T, typename... Args> 
+template <typename T, typename... Args>
 unique_ptr<T> make_unique(Args&&... args) {
   return unique_ptr<T>(new T(std::forward<Args>(args)...));
 }

@@ -50,9 +50,33 @@ template <typename T> struct ListNode {
  * @param values The values to store in the list.
  * @return A `unique_ptr` to the head of the list.
  */
+/*  struct ListNode {
+ *    T value;
+ *    cs106l::unique_ptr<ListNode<T>> next;
+ *  }
+ */
 template <typename T> cs106l::unique_ptr<ListNode<T>> create_list(const std::vector<T>& values) {
   /* STUDENT TODO: Implement this method */
-  throw std::runtime_error("Not implemented: createList");
+  cs106l::unique_ptr<ListNode<T>> head;
+  for (auto it = values.crbegin(); it != values.crend(); ++it) {
+    cs106l::unique_ptr<ListNode<T>> node = cs106l::make_unique<ListNode<T>>(*it);
+    node->next = std::move(head);   // move assignment constructor
+    head = std::move(node);
+  }
+  return head;
+}
+
+template <typename T> cs106l::unique_ptr<ListNode<T>> wrong_create_list(const std::vector<T>& values) {
+  /* STUDENT TODO: Implement this method */
+  cs106l::unique_ptr<ListNode<T>> head;
+  for (auto it = values.crbegin(); it != values.crend(); ++it) {
+    // now node points to nullptr, so the following codes go wrong
+    cs106l::unique_ptr<ListNode<T>> node;
+    node->value = *it;
+    node->next = std::move(head);   // move assignment constructor
+    head = std::move(node);
+  }
+  return head;
 }
 
 /**
