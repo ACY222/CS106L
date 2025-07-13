@@ -52,9 +52,16 @@ template <typename T> struct ListNode {
  */
 template <typename T> cs106l::unique_ptr<ListNode<T>> create_list(const std::vector<T>& values) {
   /* STUDENT TODO: Implement this method */
-  throw std::runtime_error("Not implemented: createList");
+  using namespace cs106l;
+  cs106l::unique_ptr<ListNode<T>> head = nullptr;
+  // const reverse begin iterator
+  for (auto i = values.crbegin(); i != values.crend(); ++i) {
+    cs106l::unique_ptr<ListNode<T>> node = cs106l::make_unique<ListNode<T>>(*i);
+    node->next = std::move(head);
+    head = std::move(node);
+  }
+  return head;
 }
-
 /**
  * @brief Applies a function to each element in the linked list.
  * @tparam T The type of the value stored in the list.
